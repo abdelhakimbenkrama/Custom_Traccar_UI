@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Device from "../SidebarComponents/Device";
 import { useDispatch } from "react-redux";
-import { devicedetails  ,alldevices} from "../../features/appSlice"
+import { devicedetails } from "../../features/appSlice"
 
 const AllDevices = () => {
   const dispatch = useDispatch();

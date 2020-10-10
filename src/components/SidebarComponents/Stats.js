@@ -23,10 +23,11 @@ const Stats = () => {
 
 const Container = styled.div`
   width: 100%;
+  display:flex;
+  flex-direction:column;
 `;
 
-const Graphs = styled.div`
-  height: 300px;
+const Graphs = styled.div`  
   padding: 1rem;
   margin: 0.5rem 1rem 1rem 1rem;
   background-color: white;
@@ -34,12 +35,12 @@ const Graphs = styled.div`
 `;
 
 const DevicesList = styled.div`
-  height: 240px;
+  flex: 1;
   padding: 1rem;
   margin: 1rem;
   background-color: white;
   border-radius: 20px;
-  flex:1;
+  
 `;
 
 const Title = styled.p`

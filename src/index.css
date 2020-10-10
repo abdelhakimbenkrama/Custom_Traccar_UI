@@ -1,3 +1,8 @@
+*,
+*:focus,
+*:hover {
+  outline: none;
+}
 * {
   margin: 0;
   padding: 0;

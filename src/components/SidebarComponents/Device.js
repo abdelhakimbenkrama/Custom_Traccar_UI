@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MoreIcon from "../../assets/more.png";
 import { useDispatch } from "react-redux";
-import { devicedetails  ,alldevices} from "../../features/appSlice"
+import { devicedetails } from "../../features/appSlice"
 
 const Device = () => {
   const dispatch = useDispatch();
