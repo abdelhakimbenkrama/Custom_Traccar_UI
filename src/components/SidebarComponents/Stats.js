@@ -39,6 +39,7 @@ const DevicesList = styled.div`
   margin: 1rem;
   background-color: white;
   border-radius: 20px;
+  flex:1;
 `;
 
 const Title = styled.p`
