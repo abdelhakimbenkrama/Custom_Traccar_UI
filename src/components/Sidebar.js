@@ -47,7 +47,7 @@ const Container = styled.div`
   background-color: #f3f3f3;
   padding: 0;
   margin: 0;
-
+  overflow-y: scroll;
   @media only screen and (max-width: 1280px) {
     width: 25%;
   }
