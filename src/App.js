@@ -1,12 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-
+import { useDispatch } from "react-redux";
 import "./App.css";
 import Map from "./components/Map";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
+import { pushJsonData } from "./features/devicesSlice";
+
+//this data should come from the server
+import data from "./DummyData.json";
 
 function App() {
+  //get all devices from server and push to Store
+  const dispatch = useDispatch();
+  dispatch(pushJsonData(data));
+
   return (
     <Container>
       <Navbar />

@@ -40,7 +40,7 @@ const Container = styled.div`
   justify-content: space-evenly;
   width: 25%;
   @media only screen and (max-width: 1280px) {
-    width: 25%;
+    width: 35%;
   }
 `;
 

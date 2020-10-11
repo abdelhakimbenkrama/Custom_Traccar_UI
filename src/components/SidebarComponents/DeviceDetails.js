@@ -8,8 +8,8 @@ const DeviceDetails = () => {
         <Title>Audi A1 :</Title>
         <State />
       </Header>
-      <Info attr="Latitude" value="35.986447°" />
-      <Info attr="Longitude" value="6.5367447°" />
+      <Info attr="Latitude" value="35.986447" />
+      <Info attr="Longitude" value="6.5367447" />
       <Info attr="Accuracy" value="0.02 km" />
       <Info attr="Altitude" value="1121.9" />
       <Info attr="Speed" value="0 km/h" />

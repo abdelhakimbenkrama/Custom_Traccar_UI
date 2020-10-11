@@ -1,0 +1,64 @@
+{
+  "devices": [
+    {
+      "deviceID": "1",
+      "devicename": "audi A1",
+      "type": "Car",
+      "Latitude": "35.5634",
+      "Longitude": "6.1890",
+      "Accuracy": "0.02",
+      "Altitude": "1121.9",
+      "speed": "10",
+      "Protocol": "osmand",
+      "BatteryLevel": "71",
+      "TotalDistance": "640",
+      "LastSession": "0:53",
+      "status": "on"
+    },
+    {
+      "deviceID": "2",
+      "devicename": "audi Q1",
+      "type": "Car",
+      "Latitude": "35.54",
+      "Longitude": "6.1890",
+      "Accuracy": "0.02",
+      "Altitude": "1121.9",
+      "speed": "0",
+      "Protocol": "osmand",
+      "BatteryLevel": "71",
+      "TotalDistance": "640",
+      "LastSession": "1:23",
+      "status": "off"
+    },
+    {
+      "deviceID": "3",
+      "devicename": "audi RS3",
+      "type": "Car",
+      "Longitude": "6.2090",
+      "Latitude": "35.53",
+      "Accuracy": "0.02",
+      "Altitude": "1121.9",
+      "speed": "50",
+      "Protocol": "osmand",
+      "BatteryLevel": "71",
+      "TotalDistance": "640",
+      "LastSession": "6:46",
+      "status": "on"
+    },
+    {
+      "deviceID": "4",
+      "devicename": "audi A3",
+      "type": "Car",
+      "Longitude": "6.1980",
+      "Latitude": "35.52",
+      "Accuracy": "0.02",
+      "Altitude": "1121.9",
+      "speed": "100",
+      "Protocol": "osmand",
+      "BatteryLevel": "71",
+      "TotalDistance": "640",
+      "LastSession": "2:23",
+      "status": "off"
+    }
+  ]
+}

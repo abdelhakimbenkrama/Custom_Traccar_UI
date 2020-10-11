@@ -1,19 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Device from "../SidebarComponents/Device";
-import { useDispatch } from "react-redux";
-import { devicedetails } from "../../features/appSlice"
+import { useDispatch, useSelector } from "react-redux";
+import { devicedetails } from "../../features/appSlice";
+import { Data } from "../../features/devicesSlice";
 
 const AllDevices = () => {
   const dispatch = useDispatch();
+  const state = useSelector(Data);
+
   return (
     <Container>
       <Header>
-        <Title >All Devices :</Title>
-        <EditButton onClick={()=>{dispatch(devicedetails())}}>Edit</EditButton>
+        <Title>All Devices :</Title>
+        <EditButton
+          onClick={() => {
+            dispatch(devicedetails());
+          }}
+        >
+          Edit
+        </EditButton>
       </Header>
-      <Device />
-      <Device />
+
+      {state.devices.map((device) => (
+        <Device
+          key={device.deviceID}
+          name={device.devicename}
+          speed={device.speed}
+          activeSession={device.LastSession}
+        />
+      ))}
     </Container>
   );
 };

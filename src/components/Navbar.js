@@ -1,18 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { home  ,alldevices} from "../features/appSlice"
-import MinNavbar from "./SidebarComponents/MinNavBar"
+import { home, alldevices } from "../features/appSlice";
+import MinNavbar from "./SidebarComponents/MinNavBar";
 
 const Navbar = () => {
   const dispatch = useDispatch();
+
   return (
     <Container>
       <div>
-        <Logo onClick={()=>{dispatch(home())}}>
+        <Logo
+          onClick={() => {
+            dispatch(home());
+          }}
+        >
           Allo<span>Mapi</span>
         </Logo>
-        <NavEle onClick={()=>{dispatch(alldevices())}}>Devices</NavEle>
+        <NavEle
+          onClick={() => {
+            dispatch(alldevices());
+          }}
+        >
+          Devices
+        </NavEle>
         <NavEle>Events</NavEle>
         <NavEle>Users</NavEle>
         <NavEle>History</NavEle>
@@ -20,7 +31,7 @@ const Navbar = () => {
         <NavEle>Raports</NavEle>
       </div>
 
-      <MinNavbar/>
+      <MinNavbar />
     </Container>
   );
 };
@@ -49,7 +60,7 @@ const Logo = styled.a`
   cursor: pointer;
   span {
     font-weight: 300;
-    color: #FF1482;
+    color: #ff1482;
   }
 `;
 
@@ -71,7 +82,5 @@ const NavEle = styled.a`
     padding: 2rem 0.6rem;
   }
 `;
-
-
 
 export default Navbar;

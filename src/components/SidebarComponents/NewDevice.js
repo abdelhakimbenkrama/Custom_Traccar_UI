@@ -10,8 +10,8 @@ const NewDevice = () => {
         <Input placeholder="Identifier" type="text" />
         <Input placeholder="Model" type="text" />
         <Buttons>
-          <button>Add</button>
-          <button>Add Attribute</button>
+          {/* <button>Add</button> */}
+          <button>Add Device</button>
         </Buttons>
       </Form>
     </Container>

@@ -1,19 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-import MoreIcon from "../../assets/more.png";
+import LocationIcon from "../../assets/locate.png";
 import { useDispatch } from "react-redux";
-import { devicedetails } from "../../features/appSlice"
+import { devicedetails } from "../../features/appSlice";
 
-const Device = () => {
+const Device = ({ name, activeSession, speed }) => {
   const dispatch = useDispatch();
   return (
     <Container>
       <DeviceInfo>
-        <h3 onClick={()=>{dispatch(devicedetails())}}>Audi A1</h3>
-        <p>Active Session : 1:54 h</p>
+        <h3
+          onClick={() => {
+            dispatch(devicedetails());
+          }}
+        >
+          {name}
+        </h3>
+        <p>Active Session : {activeSession} h</p>
       </DeviceInfo>
-      <Speed>56 km/h</Speed>
-      <More src={MoreIcon} />
+      <Speed>{speed ? speed : "0"} km/h</Speed>
+      <Location src={LocationIcon} />
     </Container>
   );
 };
@@ -58,9 +64,9 @@ const Speed = styled.p`
   font-weight: 300;
   color: #14ffc7;
 `;
-const More = styled.img`
-  height: 14px;
-  width: 14px;
+const Location = styled.img`
+  height: 24px;
+  width: 24px;
   cursor: pointer;
 `;
 export default Device;

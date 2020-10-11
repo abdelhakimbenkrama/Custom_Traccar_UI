@@ -2,6 +2,8 @@ import React, { useState } from "react";
 // import ReactMapGl from "react-map-gl";
 import styled from "styled-components";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import { useSelector } from "react-redux";
+import { Data } from "../features/devicesSlice";
 
 const MapBoxMap = () => {
   // const [viewport, setViewport] = useState({
@@ -11,16 +13,31 @@ const MapBoxMap = () => {
   //   width: "100%",
   //   height: "100%",
   // });
+  // get devices locations
+  const state = useSelector(Data);
 
+  // listen to devices chaning TODO later
+
+  //
   const lat = useState(35.55597);
   const lng = useState(6.17414);
   const zoom = useState(15);
   const position = [lat[0], lng[0]];
 
+  // preprocessing of data
+  let preprocessedData = [];
+  state.devices.map((device) =>
+    preprocessedData.push([
+      [device.Latitude, device.Longitude],
+      device.devicename,
+      device.type,
+    ])
+  );
   // const token =
   //   "pk.eyJ1IjoiYWJkZWxoYWtpbWJlbmtyYW1hIiwiYSI6ImNrZnplYWlxYzI4eXoyc3N2aWsxNWRkd2wifQ.F5gCxDx4F4LrVs1XR8wNyg";
   return (
     <Container>
+      {/* Map GL map */}
       {/* <ReactMapGl
         {...viewport}
         mapboxApiAccessToken={token}
@@ -39,17 +56,26 @@ const MapBoxMap = () => {
       ))}
       </ReactMapGl> */}
 
-      <Map className="mymap" center={position} zoom={zoom[0]}>
+      {/* leaflet Map */}
+
+      <Map className="mymap" center={position} zoom="13">
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={position}>
-          <Popup>
-            Benkrama Abdelhakim <br />
-            Location
-          </Popup>
-        </Marker>
+
+        {
+          // map in devices list
+          preprocessedData.map((device) => (
+            <Marker position={device[0]}>
+              <Popup>
+                {device[1]}
+                <br />
+                Location
+              </Popup>
+            </Marker>
+          ))
+        }
       </Map>
     </Container>
   );
@@ -58,7 +84,7 @@ const Container = styled.div`
   height: 100%;
   width: 75%;
   @media only screen and (max-width: 1280px) {
-    width: 75%;
+    width: 65%;
   }
 `;
 export default MapBoxMap;
