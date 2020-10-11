@@ -5,8 +5,8 @@ import App from "./App";
 import Login from "./components/Login";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
-import store from './App/store';
-
+import store from "./App/store";
+import GetData from "./components/getdata";
 ReactDOM.render(
   <Provider store={store}>
     <App />

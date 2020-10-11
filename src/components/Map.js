@@ -12,9 +12,9 @@ const MapBoxMap = () => {
   //   height: "100%",
   // });
 
-  const lat = useState(51.505);
-  const lng = useState(-0.09);
-  const zoom = useState(13);
+  const lat = useState(35.55597);
+  const lng = useState(6.17414);
+  const zoom = useState(15);
   const position = [lat[0], lng[0]];
 
   // const token =
@@ -56,7 +56,7 @@ const MapBoxMap = () => {
 };
 const Container = styled.div`
   height: 100%;
-  width: 80%;
+  width: 75%;
   @media only screen and (max-width: 1280px) {
     width: 75%;
   }

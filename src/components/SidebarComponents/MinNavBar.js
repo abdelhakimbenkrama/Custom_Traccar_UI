@@ -1,30 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import styled from "styled-components";
 import NotificationIcon from "../../assets/notification.png";
 import ProfileImg from "../../assets/profile.jpg";
-import { newdevice } from "../../features/appSlice"
+import { newdevice } from "../../features/appSlice";
 import { useDispatch } from "react-redux";
 
 const MinNavBar = () => {
-    const dispatch = useDispatch();
-    const [profileOpen , setProfileOpen] =  useState(false)
-    return (
-        <Container>
-        <AddDevice
-          onClick={() => {
-            dispatch(newdevice());
-          }}
-        >
-          +
-        </AddDevice>
-        <>
-          <Notification src={NotificationIcon} />
-          <Profile src={ProfileImg} alt="" onClick={() => setProfileOpen(!profileOpen)}/>
-
-        </>
-      </Container>
-    )
-}
+  const dispatch = useDispatch();
+  const [profileOpen, setProfileOpen] = useState(false);
+  return (
+    <Container>
+      <AddDevice
+        onClick={() => {
+          dispatch(newdevice());
+        }}
+      >
+        +
+      </AddDevice>
+      <>
+        <Notification src={NotificationIcon} />
+        <Profile
+          src={ProfileImg}
+          alt=""
+          onClick={() => setProfileOpen(!profileOpen)}
+        />
+      </>
+    </Container>
+  );
+};
 
 const Container = styled.div`
   padding: 0;
@@ -35,7 +38,7 @@ const Container = styled.div`
   align-items: center;
   flex-direction: row;
   justify-content: space-evenly;
-  width: 20%;
+  width: 25%;
   @media only screen and (max-width: 1280px) {
     width: 25%;
   }
@@ -73,4 +76,4 @@ const AddDevice = styled.button`
   font-family: "Roboto";
 `;
 
-export default MinNavBar
+export default MinNavBar;
