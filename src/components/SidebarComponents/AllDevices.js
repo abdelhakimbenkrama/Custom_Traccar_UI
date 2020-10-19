@@ -1,35 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Device from "../SidebarComponents/Device";
 import { useDispatch, useSelector } from "react-redux";
 import { devicedetails } from "../../features/appSlice";
-import { Data } from "../../features/devicesSlice";
+import { Data, pushJsonData } from "../../features/devicesSlice";
+import { useEffectAsync } from "../../reactHelper";
 
+function display(state) {
+  return (
+    <>
+      {state.length > 0 ? (
+        state.map((device) => (
+          <Device
+            key={device.id}
+            id={device.id}
+            name={device.name}
+            uniqueId={device.uniqueId}
+            speed={device.groupId}
+            status={device.status}
+          />
+        ))
+      ) : (
+        <Noitems>No items</Noitems>
+      )}
+    </>
+  );
+}
 const AllDevices = () => {
   const dispatch = useDispatch();
   const state = useSelector(Data);
 
+  useEffectAsync(async () => {
+    const response = await fetch("/api/devices");
+    if (response.ok) {
+      dispatch(pushJsonData(await response.json()));
+    }
+  }, [pushJsonData]);
+
+  useEffect(() => {
+    display(state);
+  }, [state, useSelector]);
+
+  console.log("state", state);
   return (
     <Container>
       <Header>
         <Title>All Devices :</Title>
-        <EditButton
-          onClick={() => {
-            dispatch(devicedetails());
-          }}
-        >
-          Edit
-        </EditButton>
       </Header>
-
-      {state.devices.map((device) => (
-        <Device
-          key={device.deviceID}
-          name={device.devicename}
-          speed={device.speed}
-          activeSession={device.LastSession}
-        />
-      ))}
+      {display(state)}
     </Container>
   );
 };
@@ -65,6 +83,14 @@ const EditButton = styled.button`
   color: #fff;
   background-color: #06094c;
   cursor: pointer;
+`;
+
+const Noitems = styled.div`
+  margin: 1rem auto;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-weight: bold;
+  color: #3e3e46;
 `;
 
 export default AllDevices;

@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { useSelector } from "react-redux";
-import { Data } from "../features/devicesSlice";
+import { Data ,ActiveDevices} from "../features/devicesSlice";
+import { useEffect } from "react";
 
 const MapBoxMap = () => {
   // const [viewport, setViewport] = useState({
@@ -14,25 +15,25 @@ const MapBoxMap = () => {
   //   height: "100%",
   // });
   // get devices locations
-  const state = useSelector(Data);
+  const state = useSelector(ActiveDevices);
 
   // listen to devices chaning TODO later
-
-  //
-  const lat = useState(35.55597);
-  const lng = useState(6.17414);
-  const zoom = useState(15);
-  const position = [lat[0], lng[0]];
-
-  // preprocessing of data
+  const center = [35.5634,6.1890]
   let preprocessedData = [];
-  state.devices.map((device) =>
-    preprocessedData.push([
-      [device.Latitude, device.Longitude],
-      device.devicename,
-      device.type,
-    ])
-  );
+  console.log("active devices in map" ,state);
+// preprocessing of data
+if(state){
+state.map((device) =>
+  preprocessedData.push([
+    [device.latitude, device.longitude],
+    device.deviceId,
+    device.type,
+  ])
+);
+}
+  
+console.log(preprocessedData);
+
   // const token =
   //   "pk.eyJ1IjoiYWJkZWxoYWtpbWJlbmtyYW1hIiwiYSI6ImNrZnplYWlxYzI4eXoyc3N2aWsxNWRkd2wifQ.F5gCxDx4F4LrVs1XR8wNyg";
   return (
@@ -58,13 +59,14 @@ const MapBoxMap = () => {
 
       {/* leaflet Map */}
 
-      <Map className="mymap" center={position} zoom="13">
+      <Map className="mymap" center={center} zoom="13">
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
         {
+          preprocessedData.length > 0 ?
           // map in devices list
           preprocessedData.map((device) => (
             <Marker position={device[0]}>
@@ -74,7 +76,7 @@ const MapBoxMap = () => {
                 Location
               </Popup>
             </Marker>
-          ))
+          )) : <></>
         }
       </Map>
     </Container>

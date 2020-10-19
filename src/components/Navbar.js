@@ -1,7 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { home, alldevices } from "../features/appSlice";
+import {
+  home,
+  alldevices,
+  events,
+  history,
+  diagrmas,
+  rapports,
+} from "../features/appSlice";
 import MinNavbar from "./SidebarComponents/MinNavBar";
 
 const Navbar = () => {
@@ -22,13 +29,37 @@ const Navbar = () => {
             dispatch(alldevices());
           }}
         >
+          {" "}
           Devices
         </NavEle>
-        <NavEle>Events</NavEle>
-        <NavEle>Users</NavEle>
-        <NavEle>History</NavEle>
-        <NavEle>Diagrams</NavEle>
-        <NavEle>Raports</NavEle>
+        <NavEle
+          onClick={() => {
+            dispatch(events());
+          }}
+        >
+          Events
+        </NavEle>
+        <NavEle
+          onClick={() => {
+            dispatch(history());
+          }}
+        >
+          History
+        </NavEle>
+        <NavEle
+          onClick={() => {
+            dispatch(diagrmas());
+          }}
+        >
+          Diagrams
+        </NavEle>
+        <NavEle
+          onClick={() => {
+            dispatch(rapports());
+          }}
+        >
+          Raports
+        </NavEle>
       </div>
 
       <MinNavbar />

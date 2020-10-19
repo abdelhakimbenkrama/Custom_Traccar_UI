@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { TochangeData } from "../../features/devicesSlice";
 import { alldevices } from "../../features/appSlice";
 
-const NewDevice = () => {
+const EditDevice = () => {
   const dispatch = useDispatch();
-
-  const [name, setName] = useState("");
-  const [id, setId] = useState("");
+  const deviceData = useSelector(TochangeData);
+  const [name, setName] = useState(deviceData.name);
+  const [id, setId] = useState(deviceData.uniqueId);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -16,32 +17,38 @@ const NewDevice = () => {
   const handleIdChange = (event) => {
     setId(event.target.value);
   };
-
-  const handleSave = async (event) => {
-    event.preventDefault();
-    const url = "api/devices";
-    console.log({ name: name, uniqueId: id });
+  // Edit the Object
+  const HandleEdit = async () => {
+    const url = "api/devices/" + deviceData.id;
     const response = await fetch(url, {
-      method: "POST",
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
-      // what is the item
-      body: JSON.stringify({ name: name, uniqueId: id }),
+      body: JSON.stringify({ id: deviceData.id, name: name, uniqueId: id }),
     });
     if (response.ok) {
-      // go to devices list using Redux
-      console.log("item Added");
+      // go to all devices
       dispatch(alldevices());
     }
   };
 
   return (
     <Container>
-      <Title>Add Device</Title>
-      <Form onSubmit={handleSave}>
-        <Input placeholder="Name" type="text" onChange={handleNameChange} />
-        <Input placeholder="Identifier" type="text" onChange={handleIdChange} />
+      <Title>Edit Device :</Title>
+      <Form onSubmit={HandleEdit}>
+        <Input
+          placeholder="Name"
+          type="text"
+          value={name}
+          onChange={handleNameChange}
+        />
+        <Input
+          placeholder="Identifier"
+          type="text"
+          value={id}
+          onChange={handleIdChange}
+        />
         <Input placeholder="Model" type="text" />
-        <button type="submit">Add Device</button>
+        <button type="submit">Edit Device</button>
       </Form>
     </Container>
   );
@@ -96,4 +103,4 @@ const Input = styled.input`
   margin-bottom: 10px;
 `;
 
-export default NewDevice;
+export default EditDevice;

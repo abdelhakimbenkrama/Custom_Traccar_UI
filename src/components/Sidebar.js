@@ -6,7 +6,11 @@ import AllDevices from "./SidebarComponents/AllDevices";
 import DeviceDetails from "./SidebarComponents/DeviceDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { selectApp } from "../features/appSlice";
-
+import Events from "./SidebarComponents/Events";
+import History from "./SidebarComponents/History";
+import Diagrams from "./SidebarComponents/Diagrams";
+import Rapports from "./SidebarComponents/Rapports";
+import EditDevice from "./SidebarComponents/EditDevice";
 function Display(state) {
   switch (state) {
     case 0:
@@ -17,6 +21,16 @@ function Display(state) {
       return <AllDevices />;
     case 3:
       return <DeviceDetails />;
+    case 4:
+      return <Events />;
+    case 5:
+      return <EditDevice />;
+    case 6:
+      return <History />;
+    case 7:
+      return <Diagrams />;
+    case 8:
+      return <Rapports />;
     default:
       return <Stats />;
   }

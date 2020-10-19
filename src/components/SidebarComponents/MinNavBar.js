@@ -4,12 +4,23 @@ import NotificationIcon from "../../assets/notification.png";
 import ProfileImg from "../../assets/profile.jpg";
 import { newdevice } from "../../features/appSlice";
 import { useDispatch } from "react-redux";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { HandleLogout } from "../../features/loginSlice";
 
 const MinNavBar = () => {
   const dispatch = useDispatch();
   const [profileOpen, setProfileOpen] = useState(false);
+
   return (
     <Container>
+      <LogoutContainer
+        onClick={() => {
+          dispatch(HandleLogout());
+          localStorage.removeItem("user");
+        }}
+      >
+        <ExitToAppIcon />
+      </LogoutContainer>
       <AddDevice
         onClick={() => {
           dispatch(newdevice());
@@ -51,6 +62,7 @@ const Notification = styled.img`
   transition: 0.2s all ease-in-out;
   &:hover {
     background-color: #fff;
+    transform: translateY(-2px);
   }
 `;
 
@@ -61,6 +73,10 @@ const Profile = styled.img`
   border-radius: 38px;
   transition: 0.2s all ease-in-out;
   border: 1px solid black;
+  transition: all 0.2s ease-in;
+  &:hover {
+    transform: translateY(-2px);
+  }
 `;
 
 const AddDevice = styled.button`
@@ -74,6 +90,25 @@ const AddDevice = styled.button`
   border: none;
   font-size: 18px;
   font-family: "Roboto";
+  transition: all 0.2s ease-in;
+  &:hover {
+    transform: translateY(-2px);
+  }
 `;
 
+const LogoutContainer = styled.div`
+  cursor: pointer;
+  height: 38px;
+  width: 38px;
+  border-radius: 38px;
+  background-color: #06094c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: all 0.2s ease-in;
+  &:hover {
+    transform: translateY(-2px);
+  }
+`;
 export default MinNavBar;
