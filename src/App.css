@@ -1,3 +1,7 @@
 .mymap {
   height: 100%;
 }
+
+.blinking {
+  animation: fade 1s infinite alternate;
+}

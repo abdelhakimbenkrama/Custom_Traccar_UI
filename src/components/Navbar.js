@@ -8,6 +8,10 @@ import {
   history,
   diagrmas,
   rapports,
+  mainEvents,
+  mainHistory,
+  mainMap,
+  mainStops,
 } from "../features/appSlice";
 import MinNavbar from "./SidebarComponents/MinNavBar";
 
@@ -16,25 +20,35 @@ const Navbar = () => {
 
   return (
     <Container>
-      <div>
+      <LeftContainer>
         <Logo
           onClick={() => {
             dispatch(home());
+            dispatch(mainMap());
           }}
         >
           Allo<span>Mapi</span>
         </Logo>
         <NavEle
           onClick={() => {
-            dispatch(alldevices());
+            dispatch(home());
+            dispatch(mainMap());
           }}
         >
-          {" "}
+          Home
+        </NavEle>
+        <NavEle
+          onClick={() => {
+            dispatch(alldevices());
+            dispatch(mainMap());
+          }}
+        >
           Devices
         </NavEle>
         <NavEle
           onClick={() => {
             dispatch(events());
+            dispatch(mainEvents());
           }}
         >
           Events
@@ -42,6 +56,7 @@ const Navbar = () => {
         <NavEle
           onClick={() => {
             dispatch(history());
+            dispatch(mainHistory());
           }}
         >
           History
@@ -49,6 +64,7 @@ const Navbar = () => {
         <NavEle
           onClick={() => {
             dispatch(diagrmas());
+            dispatch(mainMap());
           }}
         >
           Diagrams
@@ -56,11 +72,12 @@ const Navbar = () => {
         <NavEle
           onClick={() => {
             dispatch(rapports());
+            dispatch(mainStops());
           }}
         >
-          Raports
+          Stops
         </NavEle>
-      </div>
+      </LeftContainer>
 
       <MinNavbar />
     </Container>
@@ -76,8 +93,17 @@ const Container = styled.div`
   padding: 0;
   margin: 0;
   height: 70px;
-  position: relative;
   width: 100%;
+`;
+
+const LeftContainer = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
 `;
 
 const Logo = styled.a`
@@ -100,14 +126,14 @@ const NavEle = styled.a`
   font-family: "Roboto";
   font-size: 14px;
   color: #777777;
-  padding: 2rem 1rem;
   cursor: pointer;
+  padding: 0 1rem;
   font-weight: 300;
-  margin: 0;
+  text-align: center;
   transition: 0.2s all ease-in-out;
   &:hover {
-    background-color: #06094c;
-    color: #fff;
+    font-weight: 800;
+    transform: translateY(-1px);
   }
   @media only screen and (max-width: 1280px) {
     padding: 2rem 0.6rem;

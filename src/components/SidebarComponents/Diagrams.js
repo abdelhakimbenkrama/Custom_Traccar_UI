@@ -1,7 +1,7 @@
 import React from "react";
 
 const Diagrams = () => {
-  return <div></div>;
+  return <div>Diagrams</div>;
 };
 
 export default Diagrams;

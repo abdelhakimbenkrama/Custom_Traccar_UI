@@ -9,7 +9,7 @@ import { selectApp } from "../features/appSlice";
 import Events from "./SidebarComponents/Events";
 import History from "./SidebarComponents/History";
 import Diagrams from "./SidebarComponents/Diagrams";
-import Rapports from "./SidebarComponents/Rapports";
+import Stops from "./SidebarComponents/Stops";
 import EditDevice from "./SidebarComponents/EditDevice";
 function Display(state) {
   switch (state) {
@@ -30,7 +30,7 @@ function Display(state) {
     case 7:
       return <Diagrams />;
     case 8:
-      return <Rapports />;
+      return <Stops />;
     default:
       return <Stats />;
   }

@@ -4,6 +4,7 @@ export const AppSlice = createSlice({
   name: "App",
   initialState: {
     stat: 0,
+    mainStat: 0,
   },
   reducers: {
     home: (state) => {
@@ -33,6 +34,18 @@ export const AppSlice = createSlice({
     rapports: (state) => {
       state.stat = 8;
     },
+    mainMap: (state) => {
+      state.mainStat = 0;
+    },
+    mainEvents: (state) => {
+      state.mainStat = 1;
+    },
+    mainHistory: (state) => {
+      state.mainStat = 2;
+    },
+    mainStops: (state) => {
+      state.mainStat = 3;
+    },
   },
 });
 
@@ -46,8 +59,13 @@ export const {
   editdevice,
   diagrmas,
   rapports,
+  mainMap,
+  mainEvents,
+  mainHistory,
+  mainStops,
 } = AppSlice.actions;
 
 export const selectApp = (state) => state.App.stat;
+export const selectMainApp = (state) => state.App.mainStat;
 
 export default AppSlice.reducer;

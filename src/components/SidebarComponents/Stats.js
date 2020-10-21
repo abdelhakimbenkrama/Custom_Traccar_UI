@@ -34,7 +34,7 @@ const Stats = () => {
       </Graphs>
       <DevicesList>
         <Title>Latest Active Devices :</Title>
-        {state ? (
+        {activeDevices.length > 0 ? (
           state.map((device) => (
             <Device
               key={device.deviceID}

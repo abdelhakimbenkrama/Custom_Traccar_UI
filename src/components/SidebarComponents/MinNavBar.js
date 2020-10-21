@@ -60,6 +60,8 @@ const Notification = styled.img`
   cursor: pointer;
   border-radius: 36px;
   transition: 0.2s all ease-in-out;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 8px 0 rgba(0, 0, 0, 0.3);
+
   &:hover {
     background-color: #fff;
     transform: translateY(-2px);
@@ -74,6 +76,7 @@ const Profile = styled.img`
   transition: 0.2s all ease-in-out;
   border: 1px solid black;
   transition: all 0.2s ease-in;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 8px 0 rgba(0, 0, 0, 0.3);
   &:hover {
     transform: translateY(-2px);
   }
@@ -91,6 +94,8 @@ const AddDevice = styled.button`
   font-size: 18px;
   font-family: "Roboto";
   transition: all 0.2s ease-in;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 8px 0 rgba(0, 0, 0, 0.3);
+
   &:hover {
     transform: translateY(-2px);
   }
@@ -107,6 +112,7 @@ const LogoutContainer = styled.div`
   align-items: center;
   color: white;
   transition: all 0.2s ease-in;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 8px 0 rgba(0, 0, 0, 0.3);
   &:hover {
     transform: translateY(-2px);
   }

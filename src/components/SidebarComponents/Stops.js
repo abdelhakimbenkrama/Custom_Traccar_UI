@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Data, runquery } from "../../features/devicesSlice";
 
-const History = () => {
+const Stops = () => {
   // [X] get all devices and set value of options to id
   const devices = useSelector(Data);
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const History = () => {
   };
   return (
     <Container>
-      <Title>History :</Title>
+      <Title>Stops :</Title>
       <Form>
         <p>Select device :</p>
         <select style={selectStyle} onChange={handleDeviceChange}>
@@ -66,13 +66,12 @@ const History = () => {
         </select>
 
         <button type="submit" onClick={handelPassData}>
-          Show History
+          Show Stops
         </button>
       </Form>
     </Container>
   );
 };
-
 const Container = styled.div`
   padding: 1rem;
   margin: 0.5rem 1rem 1rem 1rem;
@@ -114,16 +113,4 @@ const Form = styled.form`
     padding: 0.5rem;
   }
 `;
-const Input = styled.input`
-  width: 100%;
-  background-color: #f3f3f3;
-  padding: 0.7rem;
-  border-radius: 10px;
-  font-family: "Roboto";
-  font-size: 14px;
-  font-weight: 300;
-  color: #777777;
-  border: none;
-  margin-bottom: 10px;
-`;
-export default History;
+export default Stops;
