@@ -39,7 +39,7 @@ const Device = ({ id, name, status, speed, uniqueId }) => {
       <DeviceInfo>
         <h3
           onClick={() => {
-            dispatch(devicedetails());
+            dispatch(devicedetails(id));
           }}
         >
           {name}

@@ -11,6 +11,7 @@ const Events = () => {
   // [X] creat State vars and updatethem when select
   const [deviceId, setDeviceId] = useState(devices[devices.length - 1].id);
   const [period, setPeriod] = useState("today");
+  const [group, setGroup] = useState("");
 
   const handleDeviceChange = (event) => {
     setDeviceId(event.target.value);
@@ -18,6 +19,10 @@ const Events = () => {
 
   const handlePeriodChange = (event) => {
     setPeriod(event.target.value);
+  };
+
+  const handleGroupChange = (event) => {
+    setGroup(event.target.value);
   };
 
   const handelPassData = () => {
@@ -65,7 +70,13 @@ const Events = () => {
           <option value="thisMonth">This Month</option>
           <option value="previousMonth">Previous Month</option>
         </select>
-
+        <p>Select Group :</p>
+        <select style={selectStyle} onChange={handleGroupChange}>
+          <option selected value="1">
+            1
+          </option>
+          <option value="2">2</option>
+        </select>
         <button type="submit" onClick={handelPassData}>
           Show Events
         </button>
@@ -81,7 +92,6 @@ const Container = styled.div`
 `;
 const Title = styled.p`
   font-family: "Roboto";
-  font-size: 14 px;
   font-weight: bold;
   color: #3e3e46;
   width: 100%;

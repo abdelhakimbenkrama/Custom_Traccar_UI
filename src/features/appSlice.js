@@ -5,6 +5,7 @@ export const AppSlice = createSlice({
   initialState: {
     stat: 0,
     mainStat: 0,
+    ondisplayid: null,
   },
   reducers: {
     home: (state) => {
@@ -16,8 +17,9 @@ export const AppSlice = createSlice({
     alldevices: (state) => {
       state.stat = 2;
     },
-    devicedetails: (state) => {
+    devicedetails: (state, action) => {
       state.stat = 3;
+      state.ondisplayid = action.payload;
     },
     events: (state) => {
       state.stat = 4;
@@ -67,5 +69,6 @@ export const {
 
 export const selectApp = (state) => state.App.stat;
 export const selectMainApp = (state) => state.App.mainStat;
+export const onDisplayId = (state) => state.App.ondisplayid;
 
 export default AppSlice.reducer;

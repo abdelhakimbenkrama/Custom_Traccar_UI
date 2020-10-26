@@ -69,59 +69,91 @@ const MainStops = () => {
   });
   return (
     <Container>
-      <Row>
-        <HeaderElement>Start Time</HeaderElement>
-        <HeaderElement>End Time</HeaderElement>
-        <HeaderElement>Fuel Spend</HeaderElement>
-        <HeaderElement>Duration</HeaderElement>
-        <HeaderElement>Engine Hours</HeaderElement>
-      </Row>
-      {DataToDisplay.length > 0 ? (
-        DataToDisplay.map((OneEvent) => (
-          <Row>
-            <Element>13:00</Element>
-            <Element>15:09</Element>
-            <Element>0.7 L</Element>
-            <Element>120 min</Element>
-            <Element>2</Element>
-          </Row>
-        ))
-      ) : (
-        <></>
-      )}
+      <SubContainer>
+        <TableContainer>
+          <HeaderRow>
+            <HeaderElement>Start Time</HeaderElement>
+            <HeaderElement>End Time</HeaderElement>
+            <HeaderElement>Fuel Spend</HeaderElement>
+            <HeaderElement>Duration</HeaderElement>
+            <HeaderElement>Engine Hours</HeaderElement>
+          </HeaderRow>
+          {DataToDisplay.length > 0 ? (
+            DataToDisplay.map((OneEvent) => (
+              <Row>
+                <Element>13:00</Element>
+                <Element>15:09</Element>
+                <Element>0.7 L</Element>
+                <Element>120 min</Element>
+                <Element>2</Element>
+              </Row>
+            ))
+          ) : (
+            <></>
+          )}
+        </TableContainer>
+      </SubContainer>
     </Container>
   );
 };
+
 const Container = styled.div`
   height: 100%;
   width: 75%;
-  background-color: #f3f3f8;
-  overflow-y: scroll;
+  background-color: #f3f3f3;
+  display: grid;
+  place-items: center;
   @media only screen and (max-width: 1280px) {
     width: 65%;
   }
 `;
+const SubContainer = styled.div`
+  padding: 0.5rem;
+  height: 90%;
+  width: 90%;
+  border: none;
+  border-radius: 25px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 8px 0 rgba(0, 0, 0, 0.3);
+`;
+const TableContainer = styled.div`
+  overflow-y: scroll;
+  height: 100%;
+  padding: 0 0.7rem;
+`;
+
 const Row = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  font-size: 14px;
-  font-family: "Lato";
-  font-weight: bold;
 `;
+
+const HeaderRow = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  border-bottom: 1px solid #f3f3f3;
+`;
+
 const HeaderElement = styled.div`
   width: 20%;
+  padding: 0.7rem 0;
+  color: #3e3e46;
+  font-size: 16px;
+  font-family: "Roboto";
+  font-weight: bold;
   text-align: center;
-  padding: 1rem 0;
 `;
 const Element = styled.div`
   width: 20%;
-  text-align: center;
-  font-weight: 300;
-  font-size: 12px;
+  font-weight: 500;
+  font-size: 13px;
   padding: 0.5rem 0;
+  text-align: center;
+  color: #3e3e46;
 `;
-
 export default MainStops;

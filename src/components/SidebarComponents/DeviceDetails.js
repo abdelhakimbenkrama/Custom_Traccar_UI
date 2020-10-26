@@ -1,21 +1,88 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { onDisplayId } from "../../features/appSlice";
 import Info from "./info";
+import moment from "moment";
+
 const DeviceDetails = () => {
+  // [X] check object id
+  const [DeviceObject, setDeviceObject] = useState(null);
+  const id = useSelector(onDisplayId);
+  console.log("received id", id);
+  // do Query and get all the data GEt/devices/deviceid
+
+  async function getOneDevice(id) {
+    const url = "api/devices/" + id;
+    if (DeviceObject === null) {
+      const response = await fetch(url);
+      const information = await response.json();
+      setDeviceObject(information);
+    }
+  }
+
+  async function getOneDeviceLatestPosition(id) {
+    // build Query
+    const selectedFrom = moment().subtract(1, "year").startOf("year");
+    const selectedTo = moment().subtract(1, "year").endOf("year");
+    const query = new URLSearchParams({
+      deviceId: id,
+      from: selectedFrom.toISOString(),
+      to: selectedTo.toISOString(),
+    });
+
+    // run query
+    fetch(`api/positions?${query.toString()}`, {
+      headers: { Accept: "application/json" },
+    }).then((response) => {
+      if (response.ok) {
+        console.log("data to display ", response.json());
+      }
+    });
+  }
+  // const url = "api/devices/" + id;
+  // fetch(url, {
+  //   method: "GET",
+  //   headers: { "Content-Type": "application/json" },
+  // })
+  //   .then((response) => {
+  //     return response.json();
+  //   })
+  //   .then((response) => {
+  //     DeviceObject = response;
+  //     console.log("inside ", DeviceObject);
+  //   });
+
+  // pass data to JSX
+  if (id) {
+    getOneDevice(id);
+    console.log(DeviceObject);
+    //Needs History to bee implemented
+
+    //getOneDeviceLatestPosition(id);
+  }
+
+  // Devices ==>Name , model , phone , status , unique id
+
+  // Position ==> lat long , acc , alti , speed , protocol , battery level , total distance
   return (
     <Container>
-      <Header>
-        <Title>Audi A1 :</Title>
-        <State />
-      </Header>
-      <Info attr="Latitude" value="35.986447" />
-      <Info attr="Longitude" value="6.5367447" />
-      <Info attr="Accuracy" value="0.02 km" />
-      <Info attr="Altitude" value="1121.9" />
-      <Info attr="Speed" value="0 km/h" />
-      <Info attr="Protocol" value="osmand" />
-      <Info attr="Battery Level" value="71%" />
-      <Info attr="Total Distance" value="640 km" />
+      {DeviceObject != null ? (
+        <>
+          <Header>
+            <Title>{DeviceObject.name}</Title>
+            <State />
+          </Header>
+          <Info attr="Model" value={DeviceObject.model} />
+          <Info attr="Phone" value={DeviceObject.phone} />
+          <Info attr="Unique Id" value={DeviceObject.uniqueId} />
+          <Info attr="category" value={DeviceObject.category} />
+        </>
+      ) : (
+        <Header>
+          <Title>No informations</Title>
+        </Header>
+      )}
     </Container>
   );
 };

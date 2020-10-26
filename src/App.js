@@ -30,18 +30,16 @@ function CheckMainDisplayer(state) {
 }
 
 function App() {
-  //get all devices from server and push to Store
   const dispatch = useDispatch();
-
   const serializedUser = localStorage.getItem("user");
   if (serializedUser != null) {
     dispatch(HandleLogin());
   }
-  // controle session Load
-  // if Session Varible is Saved in Browser Session Variable
-  // Load Session varibale
   const session = useSelector(Session);
   const mainStat = useSelector(selectMainApp);
+
+  // change Routing when and store token in App slice
+  // when refreshing history should be saved and return us to the last page
 
   useEffect(() => {
     CheckMainDisplayer(mainStat);
