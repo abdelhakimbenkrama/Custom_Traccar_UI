@@ -8,7 +8,7 @@ import MainEvents from "./components/MainComponents/MainEvents";
 import MainStops from "./components/MainComponents/MainStops";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
-import { pushJsonData } from "./features/devicesSlice";
+import { Switch, Route } from "react-router-dom";
 import SocketController from "./SocketController";
 import Login from "./components/Login";
 import { Session } from "./features/loginSlice";
@@ -31,46 +31,41 @@ function CheckMainDisplayer(state) {
 
 function App() {
   const dispatch = useDispatch();
-  const serializedUser = localStorage.getItem("user");
-  if (serializedUser != null) {
-    dispatch(HandleLogin());
-  }
-  const session = useSelector(Session);
-  const mainStat = useSelector(selectMainApp);
-
+  //const serializedUser = localStorage.getItem("user");
+  // if (serializedUser != null) {
+  //   dispatch(HandleLogin());
+  // }
+  // const session = useSelector(Session);
   // change Routing when and store token in App slice
   // when refreshing history should be saved and return us to the last page
 
-  useEffect(() => {
-    CheckMainDisplayer(mainStat);
-  }, [mainStat, dispatch]);
+  // {X} make mainPage group as one object
+  // {X} make routes without data controle
+  // {} apply logic in loginpage , socketcontrol , logoutpage
+
   return (
     <Container>
       <SocketController />
-      {session ? (
-        <>
-          <Navbar />
-          <MainContainer>
-            {CheckMainDisplayer(mainStat)}
-            <Sidebar />
-          </MainContainer>
-        </>
-      ) : (
-        <Login />
-      )}
+      <Switch>
+        <Route exact path="/" component={Mainpage} />
+        <Route exact path="/login" component={Login} />
+      </Switch>
+      {/* {session ? <Mainpage /> : <Login />} */}
     </Container>
   );
 }
 
 const Mainpage = () => {
-  const session = false;
-  return !session ? (
-    <></>
-  ) : (
+  const mainStat = useSelector(selectMainApp);
+  useEffect(() => {
+    CheckMainDisplayer(mainStat);
+  }, [mainStat]);
+
+  return (
     <>
       <Navbar />
       <MainContainer>
-        <Map />
+        {CheckMainDisplayer(mainStat)}
         <Sidebar />
       </MainContainer>
     </>

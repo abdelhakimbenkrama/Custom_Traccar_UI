@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const DevicesSlice = createSlice({
   name: "Devices",
   initialState: {
-    data: null,
-    activeDevices: null,
+    data: [],
+    activeDevices: [],
     tochange: null,
     queryData: [],
   },

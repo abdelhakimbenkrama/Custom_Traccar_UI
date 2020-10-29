@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { HandleLogin } from "../features/loginSlice";
+import { useHistory } from "react-router-dom";
 
 const TestLogin = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,11 +26,12 @@ const TestLogin = () => {
       body: new URLSearchParams(`email=${email}&password=${password}`),
     });
     if (response.ok) {
-      const user = await response.json();
-      const serializedUser = JSON.stringify(user);
-      console.log("user data : ", user);
-      localStorage.setItem("user", serializedUser);
+      // const user = await response.json();
+      // const serializedUser = JSON.stringify(user);
+      // localStorage.setItem("user", serializedUser);
       dispatch(HandleLogin());
+      // push login history
+      history.push("/");
     } else {
       console.log("not connected to the server");
       setPassword("");

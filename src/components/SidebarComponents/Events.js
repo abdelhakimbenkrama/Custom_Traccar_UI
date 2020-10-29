@@ -8,8 +8,12 @@ const Events = () => {
   const devices = useSelector(Data);
   const dispatch = useDispatch();
   dispatch(runquery([]));
+  const [deviceId, setDeviceId] = useState();
+
+  if (devices.length > 0) {
+    setDeviceId(devices[0].id);
+  }
   // [X] creat State vars and updatethem when select
-  const [deviceId, setDeviceId] = useState(devices[devices.length - 1].id);
   const [period, setPeriod] = useState("today");
   const [group, setGroup] = useState("");
 

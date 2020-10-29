@@ -6,19 +6,23 @@ import { newdevice } from "../../features/appSlice";
 import { useDispatch } from "react-redux";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { HandleLogout } from "../../features/loginSlice";
+import { useHistory } from "react-router-dom";
 
 const MinNavBar = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [profileOpen, setProfileOpen] = useState(false);
 
+  const handleLogout = async () => {
+    const response = await fetch("/api/session", { method: "DELETE" });
+    if (response.ok) {
+      dispatch(HandleLogout());
+      history.push("/login");
+    }
+  };
   return (
     <Container>
-      <LogoutContainer
-        onClick={() => {
-          dispatch(HandleLogout());
-          localStorage.removeItem("user");
-        }}
-      >
+      <LogoutContainer onClick={handleLogout}>
         <ExitToAppIcon />
       </LogoutContainer>
       <AddDevice
